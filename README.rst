@@ -4,11 +4,15 @@ exclusive
 
 Data structure for representing secret shares of byte vectors based on bitwise XOR, designed for use within secure multi-party computation (MPC) protocol implementations.
 
-|pypi|
+|pypi| |readthedocs|
 
 .. |pypi| image:: https://badge.fury.io/py/exclusive.svg
    :target: https://badge.fury.io/py/exclusive
    :alt: PyPI version and link.
+
+.. |readthedocs| image:: https://readthedocs.org/projects/exclusive/badge/?version=latest
+   :target: https://exclusive.readthedocs.io/en/latest/?badge=latest
+   :alt: Read the Docs documentation status.
 
 Purpose
 -------
@@ -16,7 +20,7 @@ Purpose
 .. |bytes| replace:: ``bytes``
 .. _bytes: https://docs.python.org/3/library/stdtypes.html#bytes
 
-This library provides a data structure and methods that make it possible work with *n*-out-of-*n* XOR-based `secret shares <https://en.wikipedia.org/wiki/Secret_sharing>`_ of bytes-like objects within secure multi-party computation (MPC) protocol implementations. Secret shares are represented using instances of class derived from |bytes|_, and functions are provided both for splitting bytes-like objects into shares and for reconstructing |bytes|_ objects from shares.
+This library provides a data structure and methods that make it possible to work with *n*-out-of-*n* XOR-based `secret shares <https://en.wikipedia.org/wiki/Secret_sharing>`_ of bytes-like objects within secure multi-party computation (MPC) protocol implementations. Secret shares are represented using instances of class derived from |bytes|_, and functions are provided both for splitting bytes-like objects into shares and for reconstructing |bytes|_ objects from shares.
 
 Package Installation and Usage
 ------------------------------
