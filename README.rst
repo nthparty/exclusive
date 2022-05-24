@@ -4,7 +4,7 @@ exclusive
 
 Data structure for representing secret shares of byte vectors based on bitwise XOR, designed for use within secure multi-party computation (MPC) protocol implementations.
 
-|pypi| |readthedocs|
+|pypi| |readthedocs| |actions| |coveralls|
 
 .. |pypi| image:: https://badge.fury.io/py/exclusive.svg
    :target: https://badge.fury.io/py/exclusive
@@ -13,6 +13,14 @@ Data structure for representing secret shares of byte vectors based on bitwise X
 .. |readthedocs| image:: https://readthedocs.org/projects/exclusive/badge/?version=latest
    :target: https://exclusive.readthedocs.io/en/latest/?badge=latest
    :alt: Read the Docs documentation status.
+
+.. |actions| image:: https://github.com/nthparty/exclusive/workflows/lint-test-cover-docs/badge.svg
+   :target: https://github.com/nthparty/exclusive/actions/workflows/lint-test-cover-docs.yml
+   :alt: GitHub Actions status.
+
+.. |coveralls| image:: https://coveralls.io/repos/github/nthparty/exclusive/badge.svg?branch=main
+   :target: https://coveralls.io/github/nthparty/exclusive?branch=main
+   :alt: Coveralls test coverage summary.
 
 Purpose
 -------
