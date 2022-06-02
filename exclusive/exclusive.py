@@ -23,6 +23,19 @@ class share(bytes):
     True
     """
     @staticmethod
+    def from_bytes(bs: Union[bytes, bytearray]) -> share:
+        """
+        Convert a secret share represented as a bytes-like object into a
+        :obj:`share` object. This method is provided primarily for
+        forward-compatibility and for consistency with related libraries
+        such as `additive <https://pypi.org/project/additive>`__.
+
+        >>> share.from_bytes(bytes([1, 2, 3]))
+        share([1, 2, 3])
+        """
+        return share(bs)
+
+    @staticmethod
     def from_base64(s: str) -> share:
         """
         Convert a secret share represented as a Base64 encoding of
@@ -53,6 +66,21 @@ class share(bytes):
             raise ValueError('shares must have equal lengths')
 
         return share([a ^ b for (a, b) in zip(self, other)])
+
+    def to_bytes(self: share) -> bytes:
+        """
+        Return a bytes-like object that encodes this :obj:`share` object.
+        This method is provided primarily for forward-compatibility
+        and for consistency with related libraries such as
+        `additive <https://pypi.org/project/additive>`__.
+
+        >>> share.from_base64('HgEA').to_bytes().hex()
+        '1e0100'
+        >>> ss = [s.to_bytes() for s in shares(bytes([1, 2, 3]))]
+        >>> xor(share.from_bytes(s) for s in ss).hex()
+        '010203'
+        """
+        return bytes(self)
 
     def to_base64(self: share) -> str:
         """
