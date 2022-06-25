@@ -28,11 +28,11 @@ Purpose
 .. |bytes| replace:: ``bytes``
 .. _bytes: https://docs.python.org/3/library/stdtypes.html#bytes
 
-This library provides a data structure and methods that make it possible to work with *n*-out-of-*n* XOR-based `secret shares <https://en.wikipedia.org/wiki/Secret_sharing>`_ of bytes-like objects within secure multi-party computation (MPC) protocol implementations. Secret shares are represented using instances of class derived from |bytes|_, and functions are provided both for splitting bytes-like objects into shares and for reconstructing |bytes|_ objects from shares.
+This library provides a data structure and methods that make it possible to work with *n*-out-of-*n* XOR-based `secret shares <https://en.wikipedia.org/wiki/Secret_sharing>`__ of bytes-like objects within secure multi-party computation (MPC) protocol implementations. Secret shares are represented using instances of class derived from |bytes|_, and functions are provided both for splitting bytes-like objects into shares and for reconstructing |bytes|_ objects from shares.
 
-Package Installation and Usage
-------------------------------
-The package is available on `PyPI <https://pypi.org/project/exclusive/>`_::
+Installation and Usage
+----------------------
+This library is available as a `package on PyPI <https://pypi.org/project/exclusive>`__::
 
     python -m pip install exclusive
 
@@ -69,7 +69,7 @@ For convenience, an |xor|_ operator that is analogous to Python's built-in |sum|
 .. |share| replace:: ``share``
 .. _share: https://exclusive.readthedocs.io/en/latest/_source/exclusive.html#exclusive.exclusive.share
 
-The |share|_ class is derived from the |bytes|_ class. Thus, all methods, operators, and functions that operate on bytes-like objects are supported for |share|_ objects. The |xor|_ operator provided by the library relies on Python's `built-in exclusive or operator <https://docs.python.org/3/reference/expressions.html#binary-bitwise-operations>`_ and can be used for concise reconstruction of values from a collection of secret shares::
+The |share|_ class is derived from the |bytes|_ class. Thus, all methods, operators, and functions that operate on bytes-like objects are supported for |share|_ objects. The |xor|_ operator provided by the library relies on Python's `built-in exclusive or operator <https://docs.python.org/3/reference/expressions.html#binary-bitwise-operations>`__ and can be used for concise reconstruction of values from a collection of secret shares::
 
     >>> xor([r, s, t]) == bytes([1, 2, 3])
     True
@@ -81,49 +81,55 @@ In addition, conversion methods for Base64 strings are included to support encod
     >>> [s.to_base64() for s in shares(bytes([1, 2, 3]))]
     ['mB6G', 'mRyF']
 
+Development
+-----------
+All installation and development dependencies are fully specified in ``pyproject.toml``. The ``project.optional-dependencies`` object is used to `specify optional requirements <https://peps.python.org/pep-0621>`__ for various development tasks. This makes it possible to specify additional options (such as ``docs``, ``lint``, and so on) when performing installation using `pip <https://pypi.org/project/pip>`__::
+
+    python -m pip install .[docs,lint]
+
 Documentation
--------------
-.. include:: toc.rst
+^^^^^^^^^^^^^
+The documentation can be generated automatically from the source files using `Sphinx <https://www.sphinx-doc.org>`__::
 
-The documentation can be generated automatically from the source files using `Sphinx <https://www.sphinx-doc.org/>`_::
-
+    python -m pip install .[docs]
     cd docs
-    python -m pip install -r requirements.txt
-    sphinx-apidoc -f -E --templatedir=_templates -o _source .. ../setup.py && make html
+    sphinx-apidoc -f -E --templatedir=_templates -o _source .. && make html
 
 Testing and Conventions
------------------------
-All unit tests are executed and their coverage is measured when using `pytest <https://docs.pytest.org/>`_ (see ``setup.cfg`` for configuration details)::
+^^^^^^^^^^^^^^^^^^^^^^^
+All unit tests are executed and their coverage is measured when using `pytest <https://docs.pytest.org>`__ (see the ``pyproject.toml`` file for configuration details)::
 
-    python -m pip install pytest pytest-cov
+    python -m pip install .[test]
     python -m pytest
 
-Alternatively, all unit tests are included in the module itself and can be executed using `doctest <https://docs.python.org/3/library/doctest.html>`_::
+Alternatively, all unit tests are included in the module itself and can be executed using `doctest <https://docs.python.org/3/library/doctest.html>`__::
 
     python exclusive/exclusive.py -v
 
-Style conventions are enforced using `Pylint <https://www.pylint.org/>`_::
+Style conventions are enforced using `Pylint <https://www.pylint.org>`__::
 
-    python -m pip install pylint
+    python -m pip install .[lint]
     python -m pylint exclusive
 
 Contributions
--------------
-In order to contribute to the source code, open an issue or submit a pull request on the `GitHub page <https://github.com/nthparty/exclusive>`_ for this library.
+^^^^^^^^^^^^^
+In order to contribute to the source code, open an issue or submit a pull request on the `GitHub page <https://github.com/nthparty/exclusive>`__ for this library.
 
 Versioning
-----------
-The version number format for this library and the changes to the library associated with version number increments conform with `Semantic Versioning 2.0.0 <https://semver.org/#semantic-versioning-200>`_.
+^^^^^^^^^^
+The version number format for this library and the changes to the library associated with version number increments conform with `Semantic Versioning 2.0.0 <https://semver.org/#semantic-versioning-200>`__.
 
 Publishing
-----------
-This library can be published as a `package on PyPI <https://pypi.org/project/exclusive/>`_ by a package maintainer. Install the `wheel <https://pypi.org/project/wheel/>`_ package, remove any old build/distribution files, and package the source into a distribution archive::
+^^^^^^^^^^
+This library can be published as a `package on PyPI <https://pypi.org/project/exclusive>`__ by a package maintainer. First, install the dependencies required for packaging and publishing::
 
-    python -m pip install wheel
-    rm -rf dist *.egg-info
-    python setup.py sdist bdist_wheel
+    python -m pip install .[publish]
 
-Next, install the `twine <https://pypi.org/project/twine/>`_ package and upload the package distribution archive to PyPI::
+Remove any old build/distribution files and package the source into a distribution archive::
 
-    python -m pip install twine
+    rm -rf build dist *.egg-info
+    python -m build --sdist --wheel .
+
+Finally, upload the package distribution archive to `PyPI <https://pypi.org>`__ using the `twine <https://pypi.org/project/twine>`__ package::
+
     python -m twine upload dist/*
