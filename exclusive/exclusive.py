@@ -4,7 +4,7 @@ bitwise XOR, designed for use within secure multi-party computation
 (MPC) protocol implementations.
 """
 from __future__ import annotations
-from typing import Optional, Union, Sequence
+from typing import Union, Optional, Sequence, Iterable
 import doctest
 import base64
 import secrets
@@ -147,7 +147,7 @@ def shares(value: Union[bytes, bytearray], quantity: Optional[int] = 2) -> Seque
     ss.append(t)
     return ss
 
-def xor(iterable: Sequence[Union[bytes, bytearray]]) -> bytes:
+def xor(iterable: Iterable[Union[bytes, bytearray]]) -> bytes:
     """
     Apply the exclusive disjunction operation across all of the elements
     of the supplied iterable.
