@@ -56,7 +56,7 @@ The number of shares can be specified explicitly (the default is two shares)::
     >>> (r, s, t) = shares(bytes([1, 2, 3]), quantity=3)
 
 .. |xor| replace:: ``xor``
-.. _xor: https://exclusive.readthedocs.io/en/latest/_source/exclusive.html#exclusive.exclusive.xor
+.. _xor: https://exclusive.readthedocs.io/en/0.2.0/_source/exclusive.html#exclusive.exclusive.xor
 
 .. |sum| replace:: ``sum``
 .. _sum: https://docs.python.org/3/library/functions.html#sum
@@ -67,7 +67,7 @@ For convenience, an |xor|_ operator that is analogous to Python's built-in |sum|
     '050705
 
 .. |share| replace:: ``share``
-.. _share: https://exclusive.readthedocs.io/en/latest/_source/exclusive.html#exclusive.exclusive.share
+.. _share: https://exclusive.readthedocs.io/en/0.2.0/_source/exclusive.html#exclusive.exclusive.share
 
 The |share|_ class is derived from the |bytes|_ class. Thus, all methods, operators, and functions that operate on bytes-like objects are supported for |share|_ objects. The |xor|_ operator provided by the library relies on Python's `built-in exclusive or operator <https://docs.python.org/3/reference/expressions.html#binary-bitwise-operations>`__ and can be used for concise reconstruction of values from a collection of secret shares::
 
@@ -106,7 +106,7 @@ Alternatively, all unit tests are included in the module itself and can be execu
 
     python src/exclusive/exclusive.py -v
 
-Style conventions are enforced using `Pylint <https://www.pylint.org>`__::
+Style conventions are enforced using `Pylint <https://pylint.pycqa.org>`__::
 
     python -m pip install .[lint]
     python -m pylint src/exclusive
@@ -125,11 +125,16 @@ This library can be published as a `package on PyPI <https://pypi.org/project/ex
 
     python -m pip install .[publish]
 
-Remove any old build/distribution files and package the source into a distribution archive::
+Ensure that the correct version number appears in ``pyproject.toml``, and that any links in this README document to the Read the Docs documentation of this package (or its dependencies) have appropriate version numbers. Also ensure that the Read the Docs project for this library has an `automation rule <https://docs.readthedocs.io/en/stable/automation-rules.html>`__ that activates and sets as the default all tagged versions. Create and push a tag for this version (replacing ``?.?.?`` with the version number)::
+
+    git tag ?.?.?
+    git push origin ?.?.?
+
+Remove any old build/distribution files. Then, package the source into a distribution archive::
 
     rm -rf build dist src/*.egg-info
     python -m build --sdist --wheel .
 
-Finally, upload the package distribution archive to `PyPI <https://pypi.org>`__ using the `twine <https://pypi.org/project/twine>`__ package::
+Finally, upload the package distribution archive to `PyPI <https://pypi.org>`__::
 
     python -m twine upload dist/*
