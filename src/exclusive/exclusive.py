@@ -180,7 +180,8 @@ def xor(iterable: Iterable[Union[bytes, bytearray]]) -> bytes:
             if len(bs) != length:
                 raise ValueError('all bytes-like objects must have the same length')
             for i in range(length):
-                # pylint: disable=E1137 # Pylint confused by initial ``None``.
+                # Pylint is confused by initial ``None``.
+                # pylint: disable=unsupported-assignment-operation
                 result[i] ^= bs[i]
 
     if result is None:
@@ -188,5 +189,5 @@ def xor(iterable: Iterable[Union[bytes, bytearray]]) -> bytes:
 
     return result
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     doctest.testmod() # pragma: no cover
