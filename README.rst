@@ -64,7 +64,7 @@ The number of shares can be specified explicitly (the default is two shares):
     >>> (r, s, t) = shares(bytes([1, 2, 3]), quantity=3)
 
 .. |xor| replace:: ``xor``
-.. _xor: https://exclusive.readthedocs.io/en/0.2.0/_source/exclusive.html#exclusive.exclusive.xor
+.. _xor: https://exclusive.readthedocs.io/en/0.3.0/_source/exclusive.html#exclusive.exclusive.xor
 
 .. |sum| replace:: ``sum``
 .. _sum: https://docs.python.org/3/library/functions.html#sum
@@ -77,7 +77,7 @@ For convenience, an |xor|_ operator that is analogous to Python's built-in |sum|
     '050705
 
 .. |share| replace:: ``share``
-.. _share: https://exclusive.readthedocs.io/en/0.2.0/_source/exclusive.html#exclusive.exclusive.share
+.. _share: https://exclusive.readthedocs.io/en/0.3.0/_source/exclusive.html#exclusive.exclusive.share
 
 The |share|_ class is derived from the |bytes|_ class. Thus, all methods, operators, and functions that operate on bytes-like objects are supported for |share|_ objects. The |xor|_ operator provided by the library relies on Python's `built-in exclusive or operator <https://docs.python.org/3/reference/expressions.html#binary-bitwise-operations>`__ and can be used for concise reconstruction of values from a collection of secret shares:
 
